@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Romans 19S</title>
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+</head>
+
+<body>
+    <h1>Bienvenue sur ma première application Flask!</h1>
+    <form action="/" method="POST">
+        <label for="user_input">Entrez du texte :</label>
+        <input type="text" id="user_input" name="user_input">
+        <button type="submit">Envoyer</button>
+
+        <p id="prediction"></p>
+        {% if prediction %}
+        <p>Prédiction : {{ prediction }}</p>
+        {% else %}
+        <p>Pas de prédiction à afficher</p>
+        {% endif %}
+
+
+        <div id="proba_chart"></div>
+        {% if probabilities %}
+        <script>
+            function createChart(labels, data) {
+                const margin = { top: 30, right: 30, bottom: 70, left: 60 };
+                const width = 500 - margin.left - margin.right;
+                const height = 300 - margin.top - margin.bottom;
+
+                const svg = d3.select("#proba_chart")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform",
+                        "translate(" + margin.left + "," + margin.top + ")");
+
+                const x = d3.scaleBand()
+                    .range([0, width])
+                    .domain(labels)
+                    .padding(0.2);
+                svg.append("g")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(d3.axisBottom(x))
+                    .selectAll("text")
+                    .attr("transform", "translate(-10,0)rotate(-45)")
+                    .style("text-anchor", "end");
+
+                const y = d3.scaleLinear()
+                    .domain([0, 1])
+                    .range([height, 0]);
+                svg.append("g")
+                    .call(d3.axisLeft(y));
+
+                console.log("Labels :", labels);
+                console.log("Data :", data);
+
+                svg.selectAll("mybar")
+                    .data(data)
+                    .enter()
+                    .append("rect")
+                    .attr("x", (d, i) => x(labels[i]))
+                    .attr("y", (d) => {
+                        console.log("y(d):", y(d));
+                        return y(d);
+                    })
+                    .attr("width", x.bandwidth())
+                    .attr("height", (d) => height - y(d))
+                    .attr("fill", "steelblue");
+
+            }
+
+            console.log("Probabilités reçues :", '{{ probabilities|tojson }}');
+            const labels = ['Classe 1', 'Classe 2', 'Classe 3', 'Classe 4', 'Classe 5'];
+            const data = JSON.parse('{{ probabilities|tojson }}');
+            createChart(labels, data);
+        </script>
+        {% else %}
+        <p>Pas de probabilités à afficher</p>
+        {% endif %}
+
+    </form>
+</body>
+
+</html>
