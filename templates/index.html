@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -8,10 +8,25 @@
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='img/background.jpg') }}");
+        }
+    </style>
 
 </head>
 
 <body>
+    <!-- Barre de navigation -->
+    <nav>
+        <ul class="nav">
+            <li class="nav-item"><a href="#">Accueil</a></li>
+            <li class="nav-item"><a href="#">Onglet 1</a></li>
+            <li class="nav-item"><a href="#">Onglet 2</a></li>
+            <li class="nav-item"><a href="#">Onglet 3</a></li>
+        </ul>
+    </nav>
+
     <h1>Bienvenue sur ma première application Flask!</h1>
     <form action="/" method="POST">
         <label for="user_input">Entrez du texte :</label>
