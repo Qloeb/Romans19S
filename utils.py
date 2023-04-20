@@ -1,7 +1,14 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from bs4 import BeautifulSoup
+from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.svm import LinearSVC
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.model_selection import StratifiedKFold
+
 import os
 
 def import_data(path):
@@ -73,11 +80,12 @@ def rassembler_textes_et_labels(textes, labels, taille_minimale=1000):
     return textes_rassembles, labels_rassembles
 
 
-def train_model(textes, labels):
+def train_model(textes, labels, model):
+
     # Création d'un pipeline pour la transformation des données et l'entraînement du modèle
     pipeline = Pipeline([
         ('tfidf', TfidfVectorizer()),  # Transformation des textes en vecteurs TF-IDF
-        ('classifier', LogisticRegression(solver='liblinear'))  # Classification avec la régression logistique
+        ('model', model)  # Classification avec la régression logistique
     ])
 
     # Entraînement du modèle
