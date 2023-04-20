@@ -29,9 +29,23 @@
 
     <h1>Bienvenue sur ma première application Flask!</h1>
     <form action="/" method="POST">
-        <label for="user_input">Entrez du texte :</label>
-        <input type="text" id="user_input" name="user_input">
-        <button type="submit">Envoyer</button>
+
+        <form action="/" method="post">
+            <label for="text_input">Entrez votre texte :</label>
+            <textarea id="text_input" name="text_input" rows="4" cols="50"></textarea><br><br>
+
+            <label for="selection">Choisissez une option :</label>
+            <select id="selection" name="selection">
+                <option value="lr" selected>Régression logistique</option>
+                <option value="mnb">Multinomial NB</option>
+                <option value="dt">Arbre de Décision</option>
+                <option value="rf">Random Forest</option>
+                <option value="ada">AdaBoost</option>
+            </select><br><br>
+
+            <input type="submit" value="Envoyer">
+        </form>
+
 
         <p id="prediction"></p>
         {% if prediction %}
@@ -93,7 +107,7 @@
             }
 
             console.log("Probabilités reçues :", '{{ probabilities|tojson }}');
-            const labels = ['Classe 1', 'Classe 2', 'Classe 3', 'Classe 4', 'Classe 5'];
+            const labels = ['Balzac', 'Flaubert', 'Classe 3', 'Classe 4', 'Zola'];
             const data = JSON.parse('{{ probabilities|tojson }}');
             createChart(labels, data);
         </script>

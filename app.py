@@ -8,14 +8,26 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def home():
 
+    dict_models = {
+        'lr':LogisticRegression(solver='liblinear', multi_class='auto'),
+        'mnb': MultinomialNB(),
+        #'lsvc': LinearSVC(),
+        'dt': DecisionTreeClassifier(max_depth=10),
+        'rf': RandomForestClassifier(max_depth=10),
+        'ada': AdaBoostClassifier(),
+    }
+
     #Sera à remplacer par un appel du model avec les bon poids directement
     textes, labels = import_data("data")
     textes, labels = rassembler_textes_et_labels(textes, labels)
-    pipe = train_model(textes, labels)
 
     if request.method == 'POST':
-        user_text = [request.form['user_input']]
-        # Vous pouvez maintenant utiliser 'user_text' dans votre programme
+
+        print("Requête reçue")
+        user_text = [request.form['text_input']]
+        selected_model = request.form["selection"]
+        selected_model = dict_models[selected_model]
+        pipe = train_model(textes, labels, selected_model)
         pred = pipe.predict(user_text)
         proba = pipe.predict_proba(user_text)
         print("Prédiction:", pred)
