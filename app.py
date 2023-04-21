@@ -5,8 +5,13 @@ from utils import *
 app = Flask(__name__)
 
 # Route pour la page d'accueil
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET'])
 def home():
+    return render_template('home.html')
+
+# Route pour la page de l'onglet 1 (ancienne page d'accueil)
+@app.route('/', methods=['GET', 'POST'])
+def predictions():
 
     dict_models = {
         'lr':LogisticRegression(solver='liblinear', multi_class='auto'),
@@ -32,9 +37,9 @@ def home():
         proba = pipe.predict_proba(user_text)
         print("Prédiction:", pred)
         print("Proba:", proba)
-        return render_template('index.html', message="Texte envoyé avec succès!",
+        return render_template('predictions.html', message="Texte envoyé avec succès!",
                                prediction=pred, probabilities=proba[0].tolist())
-    return render_template('index.html', message="Entrez votre texte et cliquez sur Envoyer.")
+    return render_template('predictions.html', message="Entrez votre texte et cliquez sur Envoyer.")
 
 # Exécution de l'application
 if __name__ == '__main__':

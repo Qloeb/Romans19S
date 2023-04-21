@@ -1,19 +1,19 @@
 Rapport de classification:
                precision    recall  f1-score   support
 
-      balzac       1.00      0.77      0.87       349
-    flaubert       0.61      0.98      0.75       378
-  maupassant       1.00      0.22      0.36       196
-        sand       0.95      0.91      0.93       399
-        zola       0.94      0.96      0.95       753
+      balzac       0.85      0.79      0.82      1406
+    flaubert       0.73      0.81      0.77      2144
+  maupassant       0.79      0.53      0.63      1338
+        sand       0.87      0.81      0.84      1501
+        zola       0.80      0.90      0.84      3061
 
-    accuracy                           0.85      2075
-   macro avg       0.90      0.77      0.77      2075
-weighted avg       0.90      0.85      0.84      2075
+    accuracy                           0.80      9450
+   macro avg       0.81      0.77      0.78      9450
+weighted avg       0.80      0.80      0.79      9450
 
 Matrice de confusion:
- [[269  75   0   3   2]
- [  0 370   0   0   8]
- [  1 106  43  11  35]
- [  0  34   0 363   2]
- [  0  23   0   5 725]]
+ [[1117  124   31   45   89]
+ [  44 1745   67   38  250]
+ [  64  255  707   61  251]
+ [  49  102   29 1218  103]
+ [  42  169   65   44 2741]]
