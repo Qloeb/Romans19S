@@ -8,30 +8,24 @@
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
-    <style>
-        body {
-            background-image: url("{{ url_for('static', filename='img/background.jpg') }}");
-        }
-    </style>
-
 </head>
 
 <body>
     <!-- Barre de navigation -->
     <nav>
         <ul class="nav">
-            <li class="nav-item"><a href="#">Accueil</a></li>
-            <li class="nav-item"><a href="#">Onglet 1</a></li>
-            <li class="nav-item"><a href="#">Onglet 2</a></li>
             <li class="nav-item"><a href="#">Onglet 3</a></li>
+            <li class="nav-item"><a href="#">Onglet 2</a></li>
+            <li class="nav-item"><a href="#">Onglet 1</a></li>            
+            <li class="nav-item"><a href="#">Accueil</a></li>
+            <li class="nav-title">Analyse de données textuelles</li>
         </ul>
     </nav>
 
-    <h1>Bienvenue sur ma première application Flask!</h1>
     <form action="/" method="POST">
 
-        <form action="/" method="post">
-            <label for="text_input">Entrez votre texte :</label>
+        
+        <label for="text_input">Entrez votre texte :</label>
             <textarea id="text_input" name="text_input" rows="4" cols="50"></textarea><br><br>
 
             <label for="selection">Choisissez une option :</label>
@@ -43,8 +37,8 @@
                 <option value="ada">AdaBoost</option>
             </select><br><br>
 
-            <input type="submit" value="Envoyer">
-        </form>
+        <input type="submit" value="Envoyer">
+        
 
 
         <p id="prediction"></p>
