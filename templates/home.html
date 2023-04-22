@@ -14,11 +14,11 @@
 </head>
 
 <body>
-    <div id="doodle-container">
+    <!-- <div id="doodle-container">
         <css-doodle click-to-update></css-doodle>
-    </div>
+    </div> -->
     <!-- Barre de navigation -->
-    <nav>
+    <nav class="fixed-navbar">
         <ul class="nav">
             <li class="nav-item"><a href="{{ url_for('predictions') }}">prédictions</a></li>
             <li class="nav-item"><a href="{{ url_for('modeles') }}">modèles</a></li>
@@ -26,6 +26,126 @@
             <li class="nav-title">analyse de données textuelles</li>
         </ul>
     </nav>
+
+    <div class="home-container">
+        <div class="text-block">
+            <h2>bienvenue</h2>
+            <p>
+                Ce site web met en lumière le travail réalisé par Quentin, Thuy My, Etienne et Brice. Le projet se
+                concentre sur la classification de texte à partir des oeuvres de cinq auteurs présentés ci-dessous. Vous
+                découvrirez également des nuages de mots caractéristiques des romans de chaque écrivain.
+            </p>
+            <p>
+                Sur la page <strong>Modèles</strong>, nous vous proposons un outil de comparaison des différents modèles
+                de classification, que vous pourrez utiliser sur la page <strong>Prédictions</strong> pour classifier
+                des extraits de texte selon les cinq romanciers en question.
+            </p>
+            <p>
+                Notre base de données comprend 22 romans des auteurs suivants :
+            </p>
+            <ul>
+                <li>Honoré de Balzac : "La Comédie humaine" volumes 1, 2 et 3.</li>
+                <li>Gustave Flaubert : "Bouvard et Pécuchet", "L'Éducation sentimentale", "Madame Bovary" et "Salammbô".
+                </li>
+                <li>Guy de Maupassant : "Fort comme la mort", "Pierre et Jean" et "Une Vie".</li>
+                <li>George Sand : "Le château des désertes", "La Petite Fadette", "Lucrezia Floriani", "Les Maîtres
+                    sonneurs", "La Mare au diable" et "Le Meunier d'Angibault".</li>
+                <li>Émile Zola : "L'Argent", "L'Assommoir", "Au Bonheur des Dames", "Germinal", "Paris" et "Le Ventre de
+                    Paris".</li>
+            </ul>
+        </div>
+        <!-- Ajoutez les autres blocs de texte ici -->
+
+        <div class="word-cloud">
+            <div class="h3-block">
+                <h3>honoré de balzac</h3>
+            </div>
+            <img class="author-image" src="{{ url_for('static', filename='img/balzac.jpg') }}"
+                alt="Photo d'Honoré de Balzac">
+            <div class="text-block">
+                <p>Honoré de Balzac (1799-1850) est un écrivain français. Il est surtout connu pour sa série de romans
+                    et
+                    nouvelles, intitulée « La Comédie humaine », qui présente une fresque de la société française du
+                    XIXe
+                    siècle.</p>
+            </div>
+
+            <img class="word-cloud-image" src="{{ url_for('static', filename='img/balzac_wordcloud.png') }}"
+                alt="Nuage de mots de l'auteur 1">
+        </div>
+
+        <div class="word-cloud">
+            <div class="h3-block">
+                <h3>gustave flaubert</h3>
+            </div>
+            <img class="author-image" src="{{ url_for('static', filename='img/flaubert.jpg') }}"
+                alt="Photo de Gustave Flaubert">
+
+
+            <div class="text-block">
+                <p>Gustave Flaubert (1821-1880) est un écrivain français, considéré comme l'un des plus grands
+                    romanciers du
+                    XIXe siècle. Son œuvre la plus célèbre est « Madame Bovary », qui a marqué l'histoire de la
+                    littérature
+                    par son style réaliste et sa critique sociale.</p>
+            </div>
+            <img class="word-cloud-image" src="{{ url_for('static', filename='img/flaubert_wordcloud.png') }}"
+                alt="Nuage de mots de l'auteur 2">
+        </div>
+
+        <div class="word-cloud">
+            <div class="h3-block">
+                <h3>guy de maupassant</h3>
+            </div>
+            <img class="author-image" src="{{ url_for('static', filename='img/maupassant.jpg') }}"
+                alt="Photo de Guy de Maupassant">
+            <div class="text-block">
+                <p>Guy de Maupassant (1850-1893) est un écrivain français, maître de la nouvelle et du roman réaliste.
+                    Il
+                    est l'un des auteurs les plus prolifiques de son époque et a marqué la littérature par ses nouvelles
+                    et
+                    ses romans, dont « Bel-Ami » et « Une vie ».</p>
+            </div>
+
+            <img class="word-cloud-image" src="{{ url_for('static', filename='img/maupassant_wordcloud.png') }}"
+                alt="Nuage de mots de l'auteur 3">
+        </div>
+
+        <div class="word-cloud">
+            <div class="h3-block">
+                <h3>george sand</h3>
+            </div>
+            <img class="author-image" src="{{ url_for('static', filename='img/sand.jpg') }}" alt="Photo de George Sand">
+            <div class="text-block">
+                <p>George Sand (1804-1876), de son vrai nom Amantine Aurore Lucile Dupin, est une écrivaine française.
+                    Elle
+                    est connue pour ses romans et ses prises de position politiques et sociales. Ses œuvres les plus
+                    célèbres sont « Indiana », « Lélia » et « La Mare au diable ».</p>
+            </div>
+
+            <img class="word-cloud-image" src="{{ url_for('static', filename='img/sand_wordcloud.png') }}"
+                alt="Nuage de mots de l'auteur 4">
+        </div>
+
+        <div class="word-cloud">
+            <div class="h3-block">
+                <h3>émile zola</h3>
+            </div>
+            <img class="author-image" src="{{ url_for('static', filename='img/zola.jpg') }}" alt="Photo d'Émile Zola">
+            <div class="text-block">
+                <p>Émile Zola (1840-1902) est un écrivain français et l'un des représentants majeurs du mouvement
+                    littéraire
+                    naturaliste. Il est surtout connu pour sa série de romans « Les Rougon-Macquart », qui décrit la
+                    société
+                    française du Second Empire à travers les membres d'une même famille.</p>
+            </div>
+
+            <img class="word-cloud-image" src="{{ url_for('static', filename='img/zola_wordcloud.png') }}"
+                alt="Nuage de mots de l'auteur 5">
+        </div>
+
+
+    </div>
 </body>
 
 </html>
