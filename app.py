@@ -5,12 +5,12 @@ from utils import *
 app = Flask(__name__)
 
 # Route pour la page d'accueil
-@app.route('/home', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def home():
     return render_template('home.html')
 
-# Route pour la page de l'onglet 1 (ancienne page d'accueil)
-@app.route('/', methods=['GET', 'POST'])
+# Route pour la page des prédictions (ancienne page d'accueil)
+@app.route('/predictions', methods=['GET', 'POST'])
 def predictions():
 
     dict_models = {
@@ -40,6 +40,11 @@ def predictions():
         return render_template('predictions.html', message="Texte envoyé avec succès!",
                                prediction=pred, probabilities=proba[0].tolist())
     return render_template('predictions.html', message="Entrez votre texte et cliquez sur Envoyer.")
+
+
+@app.route('/modeles', methods=['GET', 'POST'])
+def modeles():
+    return render_template('modeles.html')
 
 # Exécution de l'application
 if __name__ == '__main__':
