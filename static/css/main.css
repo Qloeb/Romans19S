@@ -5,15 +5,16 @@ body {
     transition: background-color 0.5s ease-in-out;
     font-family:  Calibri, sans-serif;
     line-height: 1.6;
-    font-size: 1.2vw;
+    font-size: 1vw;
     margin: 30px;
     position: relative;
     overflow: hidden;
     margin-top: 5vh;
     background-image: url('../img/background.jpg');
     background-position: center top;
-    background-repeat: repeat;
     background-size: 100%;
+    overflow-y: scroll;
+    background-attachment: fixed;
 }
 
 /* Ajoutez ces règles pour étendre le css-doodle sur toute la fenêtre */
@@ -49,9 +50,27 @@ h1 {
     font-style: italic;
 }
 
+h2 {
+    font-family:  Calibri, sans-serif;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+h3 {
+    font-family:  Calibri, sans-serif;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+h4 {
+    font-family:  Calibri, sans-serif;  
+    font-weight: bold;
+    font-variant: small-caps;  
+}
+
 /* Formulaires */
 form {
-    background-color: rgba(255, 255, 255, 0.9); /* Ajout d'une légère transparence */
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 15px;
@@ -124,7 +143,6 @@ input[type="submit"] {
     text-decoration: none;
     font-variant: small-caps;
     font-size: 16px;
-    /* margin: 8px 0; */
     margin-top: auto;
     margin-bottom: auto;
     cursor: pointer;
@@ -191,7 +209,6 @@ nav {
     font-variant: small-caps;
     margin: auto 0;
     padding: 14px 16px;
-    /* text-align: center; */
     right: 50vh;
     z-index: 3;
 }
@@ -209,5 +226,89 @@ nav {
 }
 
 .nav-item a:hover {
+    background-color: rgba(17, 17, 17, 1);
+}
+
+.fixed-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 5vh;
+}
+
+.text-block {
+    flex-basis: calc(50% - 20px);
+    max-width: 68%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.h3-block {
+    flex-basis: calc(30% - 5px);
+    max-width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding-right: 25px;
+    padding-left: 25px;
+    margin: 10px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.word-cloud {
+    flex-basis: calc(50% - 20px);
+    margin: 10px;
+    text-align: center;
+    padding: 20px;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.author-image {
+    height: 500px;
+    width: auto;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.word-cloud-image {
+    width: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    margin : 10px;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: linear-gradient(rgba(31, 38, 38, 1), rgba(31, 38, 38, 1));
+    border-radius: 20px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color:  rgba(251, 251, 251, 1);
+    border-radius: 20px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
     background-color: rgba(17, 17, 17, 1);
 }
