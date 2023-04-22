@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Romans 19S - Modèles</title>
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/css-doodle"></script>
+    <script src="{{ url_for('static', filename='js/doodle.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+    <div id="doodle-container">
+        <css-doodle click-to-update></css-doodle>
+    </div>
+    <!-- Barre de navigation -->
+    <nav>
+        <ul class="nav">
+            <li class="nav-item"><a href="{{ url_for('predictions') }}">prédictions</a></li>
+            <li class="nav-item"><a href="{{ url_for('modeles') }}">modèles</a></li>
+            <li class="nav-item"><a href="{{ url_for('home') }}">accueil</a></li>
+            <li class="nav-title">analyse de données textuelles</li>
+        </ul>
+    </nav>
+</body>
+
+</html>
