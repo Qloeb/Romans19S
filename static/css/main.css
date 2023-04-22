@@ -94,7 +94,7 @@ option {
 
 p{
     font-family: Consolas, sans-serif;
-    font-size: 16px;
+    font-size: auto;
 }
 
 textarea, select {
@@ -104,7 +104,7 @@ textarea, select {
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: auto;
     font-family: Consolas, sans-serif;
 }
 
