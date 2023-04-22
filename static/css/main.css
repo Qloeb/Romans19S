@@ -1,7 +1,7 @@
 /* Styles généraux */
 body {
     /* Définir une couleur de fond moins agressive pour les yeux */
-    background-color: #0a0c27;
+    background-color: #111;
     transition: background-color 0.5s ease-in-out;
     font-family:  Calibri, sans-serif;
     line-height: 1.6;
@@ -10,10 +10,10 @@ body {
     position: relative;
     overflow: hidden;
     margin-top: 5vh;
-    /* background-image: url('../img/background.jpg');
+    background-image: url('../img/background.jpg');
     background-position: center top;
     background-repeat: repeat;
-    background-size: 100%; */
+    background-size: 100%;
 }
 
 /* Ajoutez ces règles pour étendre le css-doodle sur toute la fenêtre */
@@ -80,12 +80,12 @@ form::-webkit-scrollbar-track {
 }
 
 form::-webkit-scrollbar-thumb {
-    background-color:  rgba(31, 31, 51, 1);
+    background-color:  rgba(51, 51, 51, 1);
     border-radius: 20px;
 }
 
 form::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(11, 11, 31, 1);
+    background-color: rgba(17, 17, 17, 1);
 }
 
 option {
@@ -116,7 +116,7 @@ label {
 }
 
 input[type="submit"] {
-    background-color:  rgba(31, 31, 51, 1);
+    background-color:  rgba(51, 51, 51, 1);
     border: none;
     color: white;
     padding: 12px 20px;
@@ -133,7 +133,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color:  rgba(11, 11, 31, 1);
+    background-color:  rgba(17, 17, 17, 1);
 }
 
 
@@ -163,7 +163,7 @@ input[type="text"] {
 
 /* Styles de la barre de navigation */
 nav {
-    background-color: rgba(31, 31, 51, 0.7);
+    background-color: rgba(51, 51, 51, 0.6);
     z-index: 2;
     overflow: hidden;
     margin: 0;
@@ -209,5 +209,5 @@ nav {
 }
 
 .nav-item a:hover {
-    background-color: rgba(11, 11, 31, 1);
+    background-color: rgba(17, 17, 17, 1);
 }
