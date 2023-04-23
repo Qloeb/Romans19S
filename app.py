@@ -12,6 +12,14 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
+@app.route('/modeles', methods=['GET', 'POST'])
+def modeles():
+    return render_template('modeles.html')
+
+@app.route('/donnees', methods=['GET', 'POST'])
+def donnees():
+    return render_template('donnees.html')
+
 # Route pour la page des prédictions (ancienne page d'accueil)
 @app.route('/predictions', methods=['GET', 'POST'])
 def predictions():
@@ -53,11 +61,6 @@ def predictions():
                                prediction=pred, probabilities=proba[0].tolist(),
                                script=script, div=div)
     return render_template('predictions.html', message="Entrez votre texte et cliquez sur Envoyer.")
-
-
-@app.route('/modeles', methods=['GET', 'POST'])
-def modeles():
-    return render_template('modeles.html')
 
 # Exécution de l'application
 if __name__ == '__main__':
