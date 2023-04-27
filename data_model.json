@@ -1,0 +1,38 @@
+[
+    {
+        "nom": "lr",
+        "acc_cv": "0.995",
+        "acc_test": "0.999",
+        "lien": "{{ url_for('static', filename='img/lr.png') }}"
+    },
+    {
+        "nom": "dt",
+        "acc_cv": "0.763",
+        "acc_test": "0.772",
+        "lien": "{{ url_for('static', filename='img/dt.png') }}"
+    },
+    {
+        "nom": "mnb",
+        "acc_cv": "0.987",
+        "acc_test": "0.989",
+        "lien": "{{ url_for('static', filename='img/mnb.png') }}"
+    },
+    {
+        "nom": "lsvc",
+        "acc_cv": "0.996",
+        "acc_test": "0.996",
+        "lien": "{{ url_for('static', filename='img/lsvc.png') }}"
+    },
+    {
+        "nom": "rf",
+        "acc_cv": "0.950",
+        "acc_test": "0.948",
+        "lien": "{{ url_for('static', filename='img/rf.png') }}"
+    },
+    {
+        "nom": "ada",
+        "acc_cv": "0.849",
+        "acc_test": "0.840",
+        "lien": "{{ url_for('static', filename='img/ada.png') }}"
+    }
+]
