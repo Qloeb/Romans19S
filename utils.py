@@ -1,94 +1,45 @@
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.pipeline import Pipeline
-from bs4 import BeautifulSoup
-from sklearn.linear_model import LogisticRegression
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.svm import LinearSVC
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
-from sklearn.calibration import CalibratedClassifierCV
-from sklearn.model_selection import StratifiedKFold
+import spacy
+import nltk
+from nltk.util import ngrams
 
-import os
+nltk.download('punkt')
 
-def import_data(path):
+# Charger le modèle de langue française de spaCy
+nlp = spacy.load("fr_core_news_sm")
 
-    textes = []
-    labels = []
+def preprocess_text(text, n=1, remove_stop_words=True, lemmatize=True, lowercase=True): # vous pouvez changer le n pour augmenter le nb de mots dans un token (1, 2, 3, ...)
+                                                                                        # vous pouvez changer la valeur de remove_stop_words (False ou Truth)
+                                                                                        # vous pouvez changer la valeur de lemmatize (False ou Truth)
+                                                                                        # vous pouvez changer la valeur de lowercase (False ou Truth)
+    # Suppression de la ponctuation spécifique
+    punctuation = "«»—" # il reste des ponctuations qui peuvent être utiles ou non pour capter les styles : “”‘’()…?!.,;'-[]|{}
+    for char in punctuation:
+        text = text.replace(char, "")
 
-    for file in os.listdir(path):
+    # Tokenisation
+    tokens = [token.text for token in nlp(text)]
 
-        path_file = os.path.join(path, file)
+    # Mise en minuscule si lowercase est True
+    if lowercase:
+        tokens = [token.lower() for token in tokens]
 
-        if os.path.isfile(path_file):
+    # Lemmatisation avec spaCy si lemmatize est True
+    if lemmatize:
+        spacy_text = nlp(" ".join(tokens))
+        tokens = [token.lemma_ for token in spacy_text]
 
-            with open(path_file) as fp:
-                soup = BeautifulSoup(fp, "html.parser")
+    # Suppression des mots vides
+    if remove_stop_words:
+        nltk.download('stopwords')
+        from nltk.corpus import stopwords
+        stop_words = set(stopwords.words('french'))
+        tokens = [token for token in tokens if token.lower() not in stop_words]
 
-            paragraphes = soup.select("p")
-            for p in paragraphes:
-                texte = p.get_text()
-                textes.append(texte)
-                labels.append(file.split("-")[0])
+    # N-grammes
+    n_grams = list(ngrams(tokens, n))
+    n_grams = [' '.join(grams) for grams in n_grams]
 
-    print("Nombre d'échantillons importés")
-    print("Balzac :",labels.count("balzac"))
-    print("Flaubert :",labels.count("flaubert"))
-    print("Maupassant :",labels.count("maupassant"))
-    print("Sand :",labels.count("sand"))
-    print("Zola :",labels.count("zola"))
-
-    return textes, labels
-
-def rassembler_textes_et_labels(textes, labels, taille_minimale=1000):
-    textes_rassembles = []
-    labels_rassembles = []
-
-    buffer_texte = ""
-    buffer_label = ""
-
-    for texte, label in zip(textes, labels):
-        if buffer_label == "":
-            buffer_label = label
-
-        if buffer_label == label:
-            buffer_texte += " " + texte
-            if len(buffer_texte) >= taille_minimale:
-                textes_rassembles.append(buffer_texte)
-                labels_rassembles.append(buffer_label)
-                buffer_texte = ""
-                buffer_label = ""
-        else:
-            if len(buffer_texte) >= taille_minimale:
-                textes_rassembles.append(buffer_texte)
-                labels_rassembles.append(buffer_label)
-            buffer_texte = texte
-            buffer_label = label
-
-    # Ajoute le dernier échantillon s'il n'a pas été ajouté précédemment et s'il est assez long
-    if buffer_label and len(buffer_texte) >= taille_minimale:
-        textes_rassembles.append(buffer_texte)
-        labels_rassembles.append(buffer_label)
-
-    print("Nombre d'échantillons rassemblés")
-    print("Balzac :",labels_rassembles.count("balzac"))
-    print("Flaubert :",labels_rassembles.count("flaubert"))
-    print("Maupassant :",labels_rassembles.count("maupassant"))
-    print("Sand :",labels_rassembles.count("sand"))
-    print("Zola :",labels_rassembles.count("zola"))
-
-    return textes_rassembles, labels_rassembles
-
-
-def train_model(textes, labels, model):
-
-    # Création d'un pipeline pour la transformation des données et l'entraînement du modèle
-    pipeline = Pipeline([
-        ('tfidf', TfidfVectorizer()),  # Transformation des textes en vecteurs TF-IDF
-        ('model', model)  # Classification avec la régression logistique
-    ])
-
-    # Entraînement du modèle
-    pipeline.fit(textes, labels)
-
-    return pipeline
+    # Jointure des mots pour créer le texte pré-traité
+    preprocessed_text = ' '.join(n_grams)
+    
+    return preprocessed_text

@@ -36,14 +36,15 @@
     <form action="/predictions" method="POST">
 
 
-        <label for="text_input">entrez votre texte :</label>
+        <label for="text_input">Entrez votre texte :</label>
         <textarea id="text_input" name="text_input" rows="4" cols="50"></textarea><br><br>
 
-        <label for="selection">choisissez une option :</label>
+        <label for="selection">Choisissez une option :</label>
         <select id="selection" name="selection">
             <option value="lr" selected>Régression logistique</option>
-            <option value="mnb">Multinomial NB</option>
+            <option value="mnb">Classifieur bayésien naïf</option>
             <option value="dt">Arbre de Décision</option>
+            <option value="lsvc">SVC Linéaire</option>
             <option value="rf">Random Forest</option>
             <option value="ada">AdaBoost</option>
         </select><br><br>
@@ -56,7 +57,7 @@
         {% if prediction %}
         <p>Prédiction : {{ prediction }}</p>
         {% else %}
-        <p>Pas de prédiction à afficher.</p>
+        <p>Entrez un texte et sélectionnez un modèle pour effectuer une prédiction.</p>
         {% endif %}
 
 
@@ -117,7 +118,7 @@
             createChart(labels, data);
         </script>
         {% else %}
-        <p>Pas de probabilités à afficher.</p>
+        <p></p>
         {% endif %}
 
     </form>
