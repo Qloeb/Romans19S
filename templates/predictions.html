@@ -10,6 +10,11 @@
     <script src="https://unpkg.com/css-doodle"></script>
     <script src="{{ url_for('static', filename='js/doodle.js') }}"></script>
 
+
+    <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-2.3.3.min.css" crossorigin="anonymous">
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.3.3.min.js" crossorigin="anonymous"></script>
+
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 
@@ -22,6 +27,7 @@
         <ul class="nav">
             <li class="nav-item"><a href="{{ url_for('predictions') }}">prédictions</a></li>
             <li class="nav-item"><a href="{{ url_for('modeles') }}">modèles</a></li>
+            <li class="nav-item"><a href="{{ url_for('donnees') }}">données</a></li>
             <li class="nav-item"><a href="{{ url_for('home') }}">accueil</a></li>
             <li class="nav-title">analyse de données textuelles</li>
         </ul>
