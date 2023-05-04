@@ -1,0 +1,38 @@
+[
+    {
+        "nom": "Régression logistique",
+        "acc_cv": "0.995",
+        "acc_test": "0.999",
+        "conf_matrix": "lr.png"
+    },
+    {
+        "nom": "Arbre de Décision",
+        "acc_cv": "0.763",
+        "acc_test": "0.772",
+        "conf_matrix": "dt.png"
+    },
+    {
+        "nom": "Classifieur bayésien naïf",
+        "acc_cv": "0.987",
+        "acc_test": "0.989",
+        "conf_matrix": "mnb.png"
+    },
+    {
+        "nom": "SVC Linéaire",
+        "acc_cv": "0.996",
+        "acc_test": "0.996",
+        "conf_matrix": "lsvc.png"
+    },
+    {
+        "nom": "Radom Forest",
+        "acc_cv": "0.950",
+        "acc_test": "0.948",
+        "conf_matrix": "rf.png"
+    },
+    {
+        "nom": "AdaBoost",
+        "acc_cv": "0.849",
+        "acc_test": "0.840",
+        "conf_matrix": "ada.png"
+    }
+]

@@ -7,16 +7,11 @@
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/css-doodle"></script>
-    <script src="{{ url_for('static', filename='js/doodle.js') }}"></script>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 
 <body>
-    <!-- <div id="doodle-container">
-        <css-doodle click-to-update></css-doodle>
-    </div> -->
     <!-- Barre de navigation -->
     <nav>
         <ul class="nav">
@@ -27,6 +22,74 @@
             <li class="nav-title">analyse de données textuelles</li>
         </ul>
     </nav>
+    <!-- Contenu principal -->
+    <div class="container">
+        <div class="selectors-container">
+            <div class="model-selector">
+                <label for="model-left-selector">modèle gauche :</label>
+                <select id="model-left-selector"></select>
+            </div>
+            <div class="model-selector">
+                <label for="model-right-selector">modèle droit :</label>
+                <select id="model-right-selector"></select>
+            </div>
+        </div>
+        <div class="model-container">
+            <div class="model" id="model-left"></div>
+            <div class="comparison-result" id="comparison-result"></div>
+            <div class="model" id="model-right"></div>
+        </div>
+        
+    </div>
+    <script>
+        // URL de base pour les images
+        const baseUrl = "{{ url_for('static', filename='img/') }}";
+
+        // Lire les données JSON des modèles
+        $.getJSON("{{ url_for('static', filename='data_model.json') }}", function (models) {
+            // Remplir les sélecteurs de modèles
+            for (const model of models) {
+                $("#model-left-selector, #model-right-selector").append(
+                    `<option value="${model.nom}">${model.nom.toUpperCase()}</option>`
+                );
+            }
+
+            // Fonction pour mettre à jour l'affichage d'un modèle
+            function updateModelDisplay(selector, container) {
+                const modelName = $(selector).val();
+                const model = models.find(m => m.nom === modelName);
+                const modelHtml = `
+        <h2>${model.nom.toUpperCase()}</h2>
+        <p>Accuracy CV: ${model.acc_cv}</p>
+        <p>Accuracy Test: ${model.acc_test}</p>
+        <img src="${baseUrl}${model.conf_matrix}" alt="Matrice de confusion ${model.nom}" />
+    `;
+                $(container).html(modelHtml);
+
+                // Comparaison des modèles
+                const modelLeft = models.find(m => m.nom === $("#model-left-selector").val());
+                const modelRight = models.find(m => m.nom === $("#model-right-selector").val());
+
+                if (modelLeft.acc_test > modelRight.acc_test) {
+                    $("#comparison-result").text(">");
+                } else if (modelLeft.acc_test < modelRight.acc_test) {
+                    $("#comparison-result").text("<");
+                } else {
+                    $("#comparison-result").text("=");
+                }
+            }
+
+            // Mettre à jour l'affichage lorsque l'utilisateur sélectionne un modèle
+            $("#model-left-selector, #model-right-selector").change(function () {
+                updateModelDisplay("#model-left-selector", "#model-left");
+                updateModelDisplay("#model-right-selector", "#model-right");
+            });
+
+            // Mettre à jour l'affichage initial
+            updateModelDisplay("#model-left-selector", "#model-left");
+            updateModelDisplay("#model-right-selector", "#model-right");
+        });
+    </script>
 </body>
 
 </html>
