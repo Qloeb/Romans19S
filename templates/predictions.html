@@ -7,8 +7,9 @@
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/css-doodle"></script>
-    <script src="{{ url_for('static', filename='js/doodle.js') }}"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
 
     <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-2.3.3.min.css" crossorigin="anonymous">
@@ -36,10 +37,10 @@
     <form action="/predictions" method="POST">
 
 
-        <label for="text_input">Entrez votre texte :</label>
+        <label for="text_input">entrez votre texte :</label>
         <textarea id="text_input" name="text_input" rows="4" cols="50"></textarea><br><br>
 
-        <label for="selection">Choisissez une option :</label>
+        <label for="selection">choisissez une option :</label>
         <select id="selection" name="selection">
             <option value="lr" selected>Régression logistique</option>
             <option value="mnb">Classifieur bayésien naïf</option>
