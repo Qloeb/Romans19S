@@ -34,5 +34,17 @@
         "acc_cv": "0.849",
         "acc_test": "0.840",
         "conf_matrix": "ada.png"
+    },
+    {
+        "nom": "LSTM",
+        "acc_cv": "0.900",
+        "acc_test": "0.936",
+        "conf_matrix": "LSTM.png"
+    },
+    {
+        "nom": "GRU",
+        "acc_cv": "0.871",
+        "acc_test": "0.935",
+        "conf_matrix": "GRU.png"
     }
 ]
