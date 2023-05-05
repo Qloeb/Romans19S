@@ -24,7 +24,7 @@
         "conf_matrix": "lsvc.png"
     },
     {
-        "nom": "Radom Forest",
+        "nom": "Random Forest",
         "acc_cv": "0.950",
         "acc_test": "0.948",
         "conf_matrix": "rf.png"
